@@ -40,4 +40,19 @@ app.get('/test', (req, res) => {
     res.json({ status: "fail", tokenLoaded: false });
   }
 });
+import express from "express";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Test endpoint
+app.get("/test", (req, res) => {
+  const hasToken = !!process.env.META_ACCESS_TOKEN;
+  res.json({ status: "ok", tokenLoaded: hasToken });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Proxy running on port ${PORT}`);
+});
 
