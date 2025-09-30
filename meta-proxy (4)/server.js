@@ -33,3 +33,11 @@ app.get("/", (req, res) => res.send("✅ Meta Proxy Running"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get('/test', (req, res) => {
+  if (META_ACCESS_TOKEN) {
+    res.json({ status: "ok", tokenLoaded: true });
+  } else {
+    res.json({ status: "fail", tokenLoaded: false });
+  }
+});
+
